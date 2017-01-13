@@ -79,7 +79,7 @@
         //显示分类菜单
         $.post("${pageContext.request.contextPath}/CategoryServlet", {"method": "findAll"}, function (data) {
             $(data).each(function (i, n) {
-                $("#menu_id").append("<li><a href='#'>" + n.cname + "</a></li>");
+                $("#menu_id").append("<li><a href='${pageContext.request.contextPath}/ProductServlet?method=findByCid&currPage=1&cid="+n.cid+"'>" + n.cname + "</a></li>");
             });
         }, "json");
         //切换验证码

@@ -9,17 +9,17 @@ import java.util.Date;
 public class Product {
     /**
      * `pid` varchar(32) NOT NULL,
-     `pname` varchar(50) DEFAULT NULL,
-     `market_price` double DEFAULT NULL,
-     `shop_price` double DEFAULT NULL,
-     `pimage` varchar(200) DEFAULT NULL,
-     `pdate` date DEFAULT NULL,
-     `is_hot` int(11) DEFAULT NULL,
-     `pdesc` varchar(255) DEFAULT NULL,
-     `pflag` int(11) DEFAULT NULL,
-     `cid` varchar(32) DEFAULT NULL,
+     * `pname` varchar(50) DEFAULT NULL,
+     * `market_price` double DEFAULT NULL,
+     * `shop_price` double DEFAULT NULL,
+     * `pimage` varchar(200) DEFAULT NULL,
+     * `pdate` date DEFAULT NULL,
+     * `is_hot` int(11) DEFAULT NULL,
+     * `pdesc` varchar(255) DEFAULT NULL,
+     * `pflag` int(11) DEFAULT NULL,
+     * `cid` varchar(32) DEFAULT NULL,
      */
-    private  String pid;//商品ID
+    private String pid;//商品ID
     private String pname;//商品名称
     private double shop_price;//商城价格
     private double market_price;//市场价格
@@ -28,7 +28,7 @@ public class Product {
     private int is_hot;//是否热门
     private String pdesc;//商品描述
     private int pflag;//是否下架
-    private String cid;//商品类型
+    private Category category;
 
     public String getPid() {
         return pid;
@@ -102,11 +102,11 @@ public class Product {
         this.pflag = pflag;
     }
 
-    public String getCid() {
-        return cid;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCid(String cid) {
-        this.cid = cid;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
