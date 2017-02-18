@@ -11,7 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<jsp:forward page="/IndexServlet">
+<jsp:forward page="${pageContext.request.contextPath}/IndexServlet">
     <jsp:param value="index" name="method"/>
 </jsp:forward>
+</body>
 </html>

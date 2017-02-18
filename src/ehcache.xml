@@ -1,9 +1,9 @@
 <ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../config/ehcache.xsd">
 
-    <diskStore path="C:/ehcache"/>
+    <diskStore path="../ehcache"/>
 
-	<cache
-			name="categoryCache"
+    <cache
+            name="categoryCache"
             maxElementsInMemory="10000"
             eternal="false"
             timeToIdleSeconds="120"
@@ -13,5 +13,5 @@
             diskPersistent="false"
             diskExpiryThreadIntervalSeconds="120"
             memoryStoreEvictionPolicy="LRU"
-            />
+    />
 </ehcache>

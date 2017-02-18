@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html>
 <head>
@@ -75,7 +76,8 @@
                     <div class="form-group">
                         <label for="username" class="col-sm-2 control-label">用户名</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
+                            <input type="text" value="${cookie.saveusername.value}" class="form-control" id="username"
+                                   name="username" placeholder="请输入用户名">
                         </div>
                     </div>
                     <div class="form-group">
@@ -103,7 +105,9 @@
                                     <input type="checkbox" name="auto_login" value="true"> 自动登录
                                 </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <label>
-                                    <input type="checkbox" name="save_username" value="true"> 记住用户名
+                                    <input type="checkbox"
+                                           <c:if test="${cookie.saveusername.value !=null}">checked</c:if>
+                                           name="save_username" value="true"> 记住用户名
                                 </label>
                             </div>
                         </div>

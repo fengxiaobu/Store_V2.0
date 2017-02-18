@@ -8,13 +8,14 @@ import java.sql.SQLException;
  * Created by Feng on 2017/1/11.
  */
 public interface UserDao {
-    public User login(User user) throws SQLException;
+    User login(User user) throws SQLException;
 
-    public User chackUsername(String username) throws SQLException;
+    User chackUsername(String username) throws SQLException;
 
     int save(User user) throws SQLException;
 
     User findByCode(String code) throws SQLException;
 
     void update(User userBean) throws SQLException;
+
 }

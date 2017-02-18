@@ -26,7 +26,7 @@ public class BaseServlet extends HttpServlet {
         }
         Class clazz = this.getClass();
         try {
-            Method method = clazz.getMethod(methodName, HttpServletRequest.class,HttpServletResponse.class);
+            Method method = clazz.getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
             String path = (String) method.invoke(this, req, resp);
             if (path != null && path != "") {
                 req.getRequestDispatcher(path).forward(req, resp);

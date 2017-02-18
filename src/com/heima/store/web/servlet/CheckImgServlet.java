@@ -14,7 +14,7 @@ import java.util.Random;
 /**
  * 生成验证码图片
  */
-@WebServlet(name = "CheckImgServlet",urlPatterns = "/CheckImgServlet")
+@WebServlet(name = "CheckImgServlet", urlPatterns = "/CheckImgServlet")
 public class CheckImgServlet extends HttpServlet {
 
     /**

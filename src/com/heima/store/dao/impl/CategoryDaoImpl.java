@@ -12,11 +12,11 @@ import java.util.List;
 /**
  * Created by Feng on 2017/1/13.
  */
-public class CategoryDaoImpl  implements CategoryDao{
+public class CategoryDaoImpl implements CategoryDao {
     @Override
     public List<Category> finAll() throws SQLException {
-        QueryRunner queryRunner=new QueryRunner(JDBCUtils.getDataSource());
-        String sql="select * from category";
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "select * from category";
         List<Category> list = queryRunner.query(sql, new BeanListHandler<Category>(Category.class));
         return list;
     }

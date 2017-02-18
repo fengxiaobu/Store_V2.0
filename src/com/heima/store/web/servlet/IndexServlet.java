@@ -2,8 +2,8 @@ package com.heima.store.web.servlet;
 
 import com.heima.store.domain.Product;
 import com.heima.store.service.ProductService;
-import com.heima.store.service.impl.ProductServiceImpl;
 import com.heima.store.utils.BaseServlet;
+import com.heima.store.utils.BeanFactory;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 @WebServlet(name = "IndexServlet", urlPatterns = "/IndexServlet")
 public class IndexServlet extends BaseServlet {
-    private static ProductService productService = new ProductServiceImpl();
+    private static ProductService productService = (ProductService) BeanFactory.getBean("productService");
 
     public String index(HttpServletRequest request, HttpServletResponse response) {
 

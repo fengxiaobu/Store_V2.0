@@ -2,8 +2,8 @@ package com.heima.store.web.servlet;
 
 import com.heima.store.domain.User;
 import com.heima.store.service.UserService;
-import com.heima.store.service.impl.UserServiceImpl;
 import com.heima.store.utils.BaseServlet;
+import com.heima.store.utils.BeanFactory;
 import com.heima.store.utils.MyDateConverter;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @WebServlet(name = "UserServlet", urlPatterns = "/UserServlet")
 public class UserServlet extends BaseServlet {
-    private static UserService us = new UserServiceImpl();
+    private static UserService us = (UserService) BeanFactory.getBean("userService");
 
     /**
      * 登录
@@ -46,7 +46,7 @@ public class UserServlet extends BaseServlet {
                 return "/UserServlet?method=loginUI";
             } else {
                 String auto_login = request.getParameter("auto_login");
-                String save_username = request.getParameter("save_username");
+                String save_username = request.getParameter("saveusername");
                 if ("true".equals(auto_login)) {
                     //设置自动登录,把用户名和密码存入Cookie,保存一周
                     Cookie cookie = new Cookie("autoLogin", userBean.getUsername() + "_" + userBean.getPassword());
@@ -55,10 +55,16 @@ public class UserServlet extends BaseServlet {
                     response.addCookie(cookie);
                 }
                 if ("true".equals(save_username)) {
+
                     //设置记住用户名,把用户名存入Cookie,保存一周
-                    Cookie cookie = new Cookie("save_username", userBean.getUsername());
+                    Cookie cookie = new Cookie("saveusername", userBean.getUsername());
                     cookie.setPath(request.getContextPath());
                     cookie.setMaxAge(60 * 60 * 24 * 7);
+                    response.addCookie(cookie);
+                } else {
+                    Cookie cookie = new Cookie("saveusername", "");
+                    cookie.setPath(request.getContextPath());
+                    cookie.setMaxAge(0);
                     response.addCookie(cookie);
                 }
                 request.getSession().setAttribute("userBean", userBean);
@@ -132,7 +138,6 @@ public class UserServlet extends BaseServlet {
     public String active(HttpServletRequest request, HttpServletResponse response) {
         try {
             String code = request.getParameter("code");
-
             User userBean = us.findByCode(code);
             if (userBean == null) {
                 request.setAttribute("msg", "激活码错误!请重新激活!");
@@ -156,8 +161,17 @@ public class UserServlet extends BaseServlet {
      * @return
      */
     public String logOut(HttpServletRequest request, HttpServletResponse response) {
-        request.getSession().removeAttribute("userBean");
-        return "/client/index.jsp";
+        request.getSession().invalidate();
+        Cookie cookie = new Cookie("autoLogin", "");
+        cookie.setPath(request.getContextPath());
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        try {
+            response.sendRedirect(request.getContextPath() + "/index.jsp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public String chackUsername(HttpServletRequest request, HttpServletResponse response) {

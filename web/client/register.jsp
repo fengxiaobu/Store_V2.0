@@ -73,7 +73,8 @@
                 <div class="form-group">
                     <label for="username" class="col-sm-2 control-label">用户名</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control required" name="username" id="username" placeholder="请输入用户名" required>
+                        <input type="text" class="form-control required" name="username" id="username"
+                               placeholder="请输入用户名" required>
                     </div>
                     <span id="chacknuserame"></span>
                 </div>
@@ -94,13 +95,15 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-6">
-                        <input type="email" name="email" class="form-control required" id="email" placeholder="Email" required>
+                        <input type="email" name="email" class="form-control required" id="email" placeholder="Email"
+                               required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="usercaption" class="col-sm-2 control-label">姓名</label>
                     <div class="col-sm-6">
-                        <input type="text" name="name" class="form-control required" id="name" placeholder="请输入姓名" required>
+                        <input type="text" name="name" class="form-control required" id="name" placeholder="请输入姓名"
+                               required>
                     </div>
                 </div>
                 <div class="form-group opt">
@@ -177,7 +180,8 @@
 
 </body>
 <script>
-    <!--验证用户名是否存在-->
+    <!--
+    验证用户名是否存在-->
     function chick_username() {
         var $value = $(this).val();
         if ($value != "") {
@@ -197,7 +201,7 @@
     }
     <!--必填项标记*-->
     $(function () {
-        $("form input.required").each(function() {
+        $("form input.required").each(function () {
             $(this).parent().parent().append("<b style='color: red'>*</b>");
         });
 
@@ -214,7 +218,7 @@
                     $parent.append("<span class='form_tips' style='font-size: 11px;color: red;'>用户名不能为空!</span>");
                 } else if (!reg.test(val)) {
                     $parent.append("<span class='form_tips' style='font-size: 11px;color: red;'>用户输入错误!</span>");
-                }else{
+                } else {
                     chick_username();
                 }
             }
@@ -233,7 +237,7 @@
                 if ($repwd == "") {
                     //$("sub_mit").prop("disabled", true);
                     $(this).parent().append("<span class='form_tips' style='font-size: 11px;color: red;'>请输入密码</span>");
-                } else if($repwd==$("#password").val()){
+                } else if ($repwd == $("#password").val()) {
                     $(this).parent().append("<span class='form_tips' style='font-size: 11px;color: red;'>请输入密码</span>");
                 }
             }

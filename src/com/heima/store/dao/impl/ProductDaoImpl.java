@@ -4,6 +4,7 @@ import com.heima.store.dao.ProductDao;
 import com.heima.store.domain.Product;
 import com.heima.store.utils.JDBCUtils;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
@@ -72,5 +73,13 @@ public class ProductDaoImpl implements ProductDao {
         String sql = "select count(*) from product where pflag=? and cid=?";
         Long count = (Long) queryRunner.query(sql, new ScalarHandler(), 0, cid);
         return count.intValue();
+    }
+
+    @Override
+    public Product findByPid(String pid) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        String sql = "select * from product where pflag=? and  pid=?";
+        Product product = queryRunner.query(sql, new BeanHandler<Product>(Product.class), 0, pid);
+        return product;
     }
 }

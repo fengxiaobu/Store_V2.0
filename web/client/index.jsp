@@ -6,8 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 
@@ -91,18 +91,18 @@
         </div>
         <div class="col-md-10">
             <div class="col-md-6" style="text-align:center;height:200px;padding:0px;">
-                <a href="${pageContext.request.contextPath}/client/product_info.jsp">
+                <a href="${pageContext.request.contextPath}/ProductServlet?method=findByPid&pid=${p.pid}">
                     <img src="${pageContext.request.contextPath}/products/hao/middle01.jpg" width="516px" height="200px"
                          style="display: inline-block;">
                 </a>
             </div>
             <c:forEach var="p" items="${newList}">
                 <div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-                    <a href="${pageContext.request.contextPath}/client/product_info.jsp">
+                    <a href="${pageContext.request.contextPath}/ProductServlet?method=findByPid&pid=${p.pid}">
                         <img src="${pageContext.request.contextPath}/${p.pimage}" width="130" height="130"
                              style="display: inline-block;">
                     </a>
-                    <p><a href="${pageContext.request.contextPath}/client/product_info.jsp"
+                    <p><a href="${pageContext.request.contextPath}/ProductServlet?method=findByPid&pid=${p.pid}"
                           style='color:#666'>${fn:substring(p.pname,0,7)}</a>
                     </p>
                     <p><font color="#E4393C" style="font-size:16px">&yen;${p.shop_price}</font></p>
@@ -133,18 +133,18 @@
         </div>
         <div class="col-md-10">
             <div class="col-md-6" style="text-align:center;height:200px;padding:0px;">
-                <a href="${pageContext.request.contextPath}/client/product_info.jsp">
+                <a href="${pageContext.request.contextPath}/ProductServlet?method=findByPid&pid=${p.pid}">
                     <img src="${pageContext.request.contextPath}/products/hao/middle01.jpg" width="516px" height="200px"
                          style="display: inline-block;">
                 </a>
             </div>
             <c:forEach var="p" items="${hotList}">
                 <div class="col-md-2" style="text-align:center;height:200px;padding:10px 0px;">
-                    <a href="${pageContext.request.contextPath}/client/product_info.jsp">
+                    <a href="${pageContext.request.contextPath}/ProductServlet?method=findByPid&pid=${p.pid}">
                         <img src="${pageContext.request.contextPath}/${p.pimage}" width="130" height="130"
                              style="display: inline-block;">
                     </a>
-                    <p><a href="${pageContext.request.contextPath}/client/product_info.jsp"
+                    <p><a href="${pageContext.request.contextPath}/ProductServlet?method=findByPid&pid=${p.pid}"
                           style='color:#666'>${fn:substring(p.pname,0,7)}</a>
                     </p>
                     <p><font color="#E4393C" style="font-size:16px">&yen;${p.shop_price}</font></p>

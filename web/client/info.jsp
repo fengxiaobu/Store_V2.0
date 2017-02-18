@@ -10,10 +10,10 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>关于我们</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/client/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/client/css/bootstrap.min.css" type="text/css"/>
     <script src="${pageContext.request.contextPath}/client/js/jquery-1.11.3.min.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/client/js/bootstrap.min.js" type="text/javascript"></script>
 </head>
@@ -38,7 +38,8 @@
             <hr/>
             <div>
                 <p>
-                    <font color="red">“中关村黑马程序员训练营”</font>是由传智播客联合中关村软件园、CSDN，并委托传智播客进行教学实施的软件开发高端培训机构，致力于服务各大软件企业，解决当前软件开发技术飞速发展，而企业招不到优秀人才的困扰。 目前，“中关村黑马程序员训练营”已成长为行业“学员质量好、课程内容深、企业满意”的移动开发高端训练基地，并被评为中关村软件园重点扶持人才企业。
+                    <font color="red">“中关村黑马程序员训练营”</font>是由传智播客联合中关村软件园、CSDN，并委托传智播客进行教学实施的软件开发高端培训机构，致力于服务各大软件企业，解决当前软件开发技术飞速发展，而企业招不到优秀人才的困扰。
+                    目前，“中关村黑马程序员训练营”已成长为行业“学员质量好、课程内容深、企业满意”的移动开发高端训练基地，并被评为中关村软件园重点扶持人才企业。
                 </p>
 
                 <p>
@@ -59,7 +60,8 @@
 </div>
 <div class="container-fluid">
     <div style="margin-top:50px;">
-        <img src="${pageContext.request.contextPath}/client/img/footer.jpg" width="100%" height="78" alt="我们的优势" title="我们的优势" />
+        <img src="${pageContext.request.contextPath}/client/img/footer.jpg" width="100%" height="78" alt="我们的优势"
+             title="我们的优势"/>
     </div>
 
     <div style="text-align: center;margin-top: 5px;">

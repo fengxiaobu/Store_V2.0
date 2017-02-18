@@ -15,4 +15,6 @@ public interface ProductService {
     List<Product> findNew() throws SQLException;
 
     PageBean<Product> findByCid(String cid, Integer currPage) throws SQLException;
+
+    Product findByPid(String pid) throws SQLException;
 }

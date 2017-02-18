@@ -31,7 +31,8 @@
             <c:if test="${not empty userBean }">
                 <li>您好:${ userBean.name }</li>
                 <li><a href="${ pageContext.request.contextPath }/UserServlet?method=logOut">退出</a></li>
-                <li><a href="#">我的订单</a></li>
+                <li><a href="${pageContext.request.contextPath}/OrdersServlet?method=findAllByPage&currPage=1">我的订单</a>
+                </li>
             </c:if>
             <li><a href="${ pageContext.request.contextPath }/client/cart.jsp">购物车</a></li>
         </ol>
@@ -53,7 +54,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">首页</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">首页</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -79,7 +80,7 @@
         //显示分类菜单
         $.post("${pageContext.request.contextPath}/CategoryServlet", {"method": "findAll"}, function (data) {
             $(data).each(function (i, n) {
-                $("#menu_id").append("<li><a href='${pageContext.request.contextPath}/ProductServlet?method=findByCid&currPage=1&cid="+n.cid+"'>" + n.cname + "</a></li>");
+                $("#menu_id").append("<li><a href='${pageContext.request.contextPath}/ProductServlet?method=findByCid&currPage=1&cid=" + n.cid + "'>" + n.cname + "</a></li>");
             });
         }, "json");
         //切换验证码

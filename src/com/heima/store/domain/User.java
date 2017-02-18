@@ -9,15 +9,15 @@ import java.util.Date;
 public class User {
     /**
      * `uid` varchar(32) NOT NULL,
-     `username` varchar(20) DEFAULT NULL,
-     `password` varchar(20) DEFAULT NULL,
-     `name` varchar(20) DEFAULT NULL,
-     `email` varchar(30) DEFAULT NULL,
-     `telephone` varchar(20) DEFAULT NULL,
-     `birthday` date DEFAULT NULL,
-     `sex` varchar(10) DEFAULT NULL,
-     `state` int(11) DEFAULT NULL,
-     `code` varchar(64) DEFAULT NULL,
+     * `username` varchar(20) DEFAULT NULL,
+     * `password` varchar(20) DEFAULT NULL,
+     * `name` varchar(20) DEFAULT NULL,
+     * `email` varchar(30) DEFAULT NULL,
+     * `telephone` varchar(20) DEFAULT NULL,
+     * `birthday` date DEFAULT NULL,
+     * `sex` varchar(10) DEFAULT NULL,
+     * `state` int(11) DEFAULT NULL,
+     * `code` varchar(64) DEFAULT NULL,
      */
     private String uid;//用户ID
     private String username;//用户名

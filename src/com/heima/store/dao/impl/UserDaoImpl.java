@@ -16,6 +16,7 @@ import java.sql.SQLException;
 public class UserDaoImpl implements UserDao {
     /**
      * 激活账户
+     *
      * @param userBean
      * @throws SQLException
      */
@@ -23,12 +24,13 @@ public class UserDaoImpl implements UserDao {
     public void update(User userBean) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
         String sql = "update user set username=?,password=?,name=?,email=?,telephone=?,birthday=?,sex=?,state=?,code=? where uid=?";
-        Object[] objects = {userBean.getUsername(), userBean.getPassword(), userBean.getName(), userBean.getEmail(), userBean.getTelephone(), userBean.getBirthday(), userBean.getSex(), userBean.getState(), userBean.getCode(),userBean.getUid()};
+        Object[] objects = {userBean.getUsername(), userBean.getPassword(), userBean.getName(), userBean.getEmail(), userBean.getTelephone(), userBean.getBirthday(), userBean.getSex(), userBean.getState(), userBean.getCode(), userBean.getUid()};
         queryRunner.update(sql, objects);
     }
 
     /**
      * 验证激活码
+     *
      * @param code
      * @return
      * @throws SQLException
@@ -43,6 +45,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 登录
+     *
      * @param user
      * @return
      * @throws SQLException
@@ -57,6 +60,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 验证用户名是否存在
+     *
      * @param username
      * @return
      * @throws SQLException
@@ -72,6 +76,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 注册
+     *
      * @param user
      * @return
      * @throws SQLException
@@ -87,11 +92,12 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 退出登录
+     *
      * @param request
      * @param response
      * @return
      */
-    public String logout(HttpServletRequest request, HttpServletResponse response){
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
         request.getSession().removeAttribute("uerBean");
         return "/index.jsp";
     }

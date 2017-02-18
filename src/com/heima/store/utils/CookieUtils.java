@@ -15,7 +15,7 @@ public class CookieUtils {
      * @return
      */
     public static Cookie getCookie(Cookie[] cookies, String cookieName) {
-        if (cookies==null||cookieName==null){
+        if (cookies == null || cookieName == null) {
             return null;
         }
         for (Cookie cookie : cookies) {

@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Feng on 2017/1/10.
  * 商品种类
  */
-public class Category implements Serializable{
+public class Category implements Serializable {
     private String cid;//商品类型ID
     private String cname;//类型名称
 

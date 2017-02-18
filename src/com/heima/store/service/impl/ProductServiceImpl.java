@@ -1,10 +1,10 @@
 package com.heima.store.service.impl;
 
 import com.heima.store.dao.ProductDao;
-import com.heima.store.dao.impl.ProductDaoImpl;
 import com.heima.store.domain.PageBean;
 import com.heima.store.domain.Product;
 import com.heima.store.service.ProductService;
+import com.heima.store.utils.BeanFactory;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -13,10 +13,11 @@ import java.util.List;
  * Created by Feng on 2017/1/13.
  */
 public class ProductServiceImpl implements ProductService {
-    private static ProductDao productDao=new ProductDaoImpl();
+    private static ProductDao productDao = (ProductDao) BeanFactory.getBean("productDao");
 
     /**
      * 最热门商品
+     *
      * @return
      * @throws SQLException
      */
@@ -27,6 +28,7 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * 最新商品
+     *
      * @return
      * @throws SQLException
      */
@@ -37,6 +39,7 @@ public class ProductServiceImpl implements ProductService {
 
     /**
      * 分类显示
+     *
      * @param cid
      * @param currPage
      * @return
@@ -47,19 +50,25 @@ public class ProductServiceImpl implements ProductService {
 
         PageBean<Product> productPageBean = new PageBean<>();
         productPageBean.setCurrPage(currPage);
-        Integer pageSize=12;
+        Integer pageSize = 12;
         productPageBean.setPageSize(pageSize);
-        Integer totalCount=productDao.findCountByCid(cid);
+        Integer totalCount = productDao.findCountByCid(cid);
         productPageBean.setTotalCount(totalCount);
 
-        double dc=(double)totalCount;
+        double dc = (double) totalCount;
         Double ceil = Math.ceil(dc / pageSize);
         productPageBean.setTotalPage(ceil.intValue());
-        int begin=(currPage-1)*pageSize;
-        List<Product> productList=productDao.findByCid(cid,begin,pageSize);
+        int begin = (currPage - 1) * pageSize;
+        List<Product> productList = productDao.findByCid(cid, begin, pageSize);
         productPageBean.setList(productList);
 
         return productPageBean;
+    }
+
+    @Override
+    public Product findByPid(String pid) throws SQLException {
+
+        return productDao.findByPid(pid);
     }
 
 }

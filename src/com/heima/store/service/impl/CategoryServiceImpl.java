@@ -1,9 +1,9 @@
 package com.heima.store.service.impl;
 
 import com.heima.store.dao.CategoryDao;
-import com.heima.store.dao.impl.CategoryDaoImpl;
 import com.heima.store.domain.Category;
 import com.heima.store.service.CategoryService;
+import com.heima.store.utils.BeanFactory;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
@@ -15,10 +15,11 @@ import java.util.List;
  * Created by Feng on 2017/1/13.
  */
 public class CategoryServiceImpl implements CategoryService {
-    CategoryDao categoryDao = new CategoryDaoImpl();
+    CategoryDao categoryDao = (CategoryDao) BeanFactory.getBean("categoryDao");
 
     /**
      * 读取商品分类
+     *
      * @return
      * @throws SQLException
      */

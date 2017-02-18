@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html>
 
@@ -58,64 +60,88 @@
 
 <jsp:include page="/client/top.jsp"></jsp:include>
 
-<div class="container">
-    <div class="row">
-
-        <div style="margin:0 auto; margin-top:10px;width:950px;">
-            <strong style="font-size:16px;margin:5px 0;">订单详情</strong>
-            <table class="table table-bordered">
-                <tbody>
-                <tr class="warning">
-                    <th>图片</th>
-                    <th>商品</th>
-                    <th>价格</th>
-                    <th>数量</th>
-                    <th>小计</th>
-                    <th>操作</th>
-                </tr>
-                <tr class="active">
-                    <td width="60" width="40%">
-                        <input type="hidden" name="id" value="22">
-                        <img src="${pageContext.request.contextPath}/image/dadonggua.jpg" width="70" height="60">
-                    </td>
-                    <td width="30%">
-                        <a target="_blank"> 有机蔬菜 大冬瓜...</a>
-                    </td>
-                    <td width="20%">
-                        ￥298.00
-                    </td>
-                    <td width="10%">
-                        <input type="text" name="quantity" value="1" maxlength="4" size="10">
-                    </td>
-                    <td width="15%">
-                        <span class="subtotal">￥596.00</span>
-                    </td>
-                    <td>
-                        <a href="javascript:;" class="delete">删除</a>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+<c:if test="${fn:length(cart.cartItemMap) == 0 }">
+    <div class="container">
+        <h3>购物车空空的哦~，去看看心仪的商品吧~</h3>
+        <img src="${ pageContext.request.contextPath }/image/cart.png"
+             width="350" height="350"/>
     </div>
+</c:if>
 
-    <div style="margin-right:130px;">
-        <div style="text-align:right;">
-            <em style="color:#ff6600;">
-                登录后确认是否享有优惠&nbsp;&nbsp;
-            </em> 赠送积分: <em style="color:#ff6600;">596</em>&nbsp; 商品金额: <strong style="color:#ff6600;">￥596.00元</strong>
+<c:if test="${fn:length(cart.cartItemMap) != 0 }">
+
+    <div class="container">
+        <div class="row">
+
+            <div style="margin:0 auto; margin-top:10px;width:950px;">
+                <strong style="font-size:16px;margin:5px 0;">订单详情</strong>
+                <table class="table table-bordered">
+
+                    <tbody>
+                    <tr class="warning">
+                        <th>图片</th>
+                        <th>商品</th>
+                        <th>价格</th>
+                        <th>数量</th>
+                        <th>小计</th>
+                        <th>操作</th>
+                    </tr>
+                    <c:forEach var="cartItem" items="${cart.cartItemMap}">
+                        <tr class="active">
+                            <td width="60" width="40%">
+                                <input type="hidden" name="id" value="22">
+                                <img src="${pageContext.request.contextPath}/${cartItem.value.product.pimage}"
+                                     width="70"
+                                     height="60">
+                            </td>
+                            <td width="30%">
+                                <a target="_blank">${cartItem.value.product.pname}</a>
+                            </td>
+                            <td width="20%">
+                                ￥${cartItem.value.product.shop_price}元
+                            </td>
+                            <td width="10%">
+                                <input type="text" name="quantity" value="${cartItem.value.count}" maxlength="4"
+                                       size="10">
+                            </td>
+                            <td width="15%">
+                                <span class="subtotal">￥${cartItem.value.subtotl}元</span>
+                            </td>
+                            <td>
+                                <a href="javascript:;" onclick="del(${cartItem.value.product.pid})"
+                                   class="delete">删除</a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+
+                </table>
+            </div>
         </div>
-        <div style="text-align:right;margin-top:10px;margin-bottom:10px;">
-            <a href="${pageContext.request.contextPath}/client/order_info.jsp" id="clear" class="clear">清空购物车</a>
-            <a href="${pageContext.request.contextPath}/client/order_info.jsp">
-                <input type="submit" width="100" value="提交订单" name="submit" border="0" style="background: url("${pageContext.request.contextPath}/client/images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-						height:35px;width:100px;color:white;">
-            </a>
+
+        <div style="margin-right:130px;">
+            <div style="text-align:right;">
+                <em style="color:#ff6600;">
+                    登录后确认是否享有优惠&nbsp;&nbsp;
+                </em> 赠送积分: <em style="color:#ff6600;">${cart.totl%100}</em>&nbsp; 商品金额: <strong
+                    style="color:#ff6600;">￥${cart.totl}元</strong>
+            </div>
+
+            <div style="text-align:right;margin-top:10px;margin-bottom:10px;">
+                <a href="${pageContext.request.contextPath}/CartServlet?method=clearCart" id="clear"
+                   class="clear">清空购物车</a>
+                <a href="${pageContext.request.contextPath}/OrdersServlet?method=addOrder">
+                    <input type="submit" width="100" value="提交订单" name="submit" border="0"
+                           style="background: url("${pageContext.request.contextPath}/images/register.gif') no-repeat
+                    scroll
+                    0 0 rgba(0, 0, 0, 0);
+                    height:35px;width:100px;color:white;">
+                </a>
+            </div>
         </div>
+
     </div>
-
-</div>
-
+</c:if>
 <div style="margin-top:50px;">
     <img src="${pageContext.request.contextPath}/image/footer.jpg" width="100%" height="78" alt="我们的优势" title="我们的优势"/>
 </div>
@@ -138,5 +164,9 @@
 </div>
 
 </body>
-
+<script>
+    function del(pid) {
+        window.location.href = "${pageContext.request.contextPath}/CartServlet?method=removeCart&pid=" + pid;
+    }
+</script>
 </html>

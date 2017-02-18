@@ -2,8 +2,8 @@ package com.heima.store.web.servlet;
 
 import com.heima.store.domain.Category;
 import com.heima.store.service.CategoryService;
-import com.heima.store.service.impl.CategoryServiceImpl;
 import com.heima.store.utils.BaseServlet;
+import com.heima.store.utils.BeanFactory;
 import net.sf.json.JSONArray;
 
 import javax.servlet.annotation.WebServlet;
@@ -17,11 +17,11 @@ import java.util.List;
  */
 @WebServlet(name = "CategoryServlet", urlPatterns = "/CategoryServlet")
 public class CategoryServlet extends BaseServlet {
-    private static final CategoryService categoryService = new CategoryServiceImpl();
+    private static final CategoryService categoryService = (CategoryService) BeanFactory.getBean("categoryService");
 
     public String findAll(HttpServletRequest request, HttpServletResponse response) {
         try {
-            List<Category> list=categoryService.finAll();
+            List<Category> list = categoryService.finAll();
             JSONArray jsonArray = JSONArray.fromObject(list);
             System.out.println("jsonArray = " + jsonArray.toString());
             response.getWriter().print(jsonArray.toString());
